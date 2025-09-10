@@ -12,9 +12,3 @@ while True:
         break
 pin.off()
 print("Finished.")
-dgdgdgrdg 
-dr globaldg 
-dg
- 
- g ertd
- g 
