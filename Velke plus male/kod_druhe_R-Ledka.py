@@ -1,14 +1,13 @@
-from machine import Pin, UART
-import time
-
-uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))
-led = Pin(16, Pin.OUT)
-
+import machine
+import sys
+ 
+led = machine.Pin(15, machine.Pin.OUT)
+ 
 while True:
-    if uart.any():
-        cmd = uart.readline().decode().strip()
-        if cmd == "ON":
-            led.value(1)
-        elif cmd == "OFF":
-            led.value(0)
-                      
+    line = sys.stdin.readline().strip()
+ 
+    if line == "LED_ON":
+        led.value(1)
+ 
+    if line == "LED_OFF":
+        led.value(0)

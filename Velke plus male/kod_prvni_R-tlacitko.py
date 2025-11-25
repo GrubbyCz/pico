@@ -1,15 +1,16 @@
-from machine import Pin, UART
+import machine
 import time
-
-uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))
-button = Pin(15, Pin.IN, Pin.PULL_UP)
-
-last_state = 1
-
+import sys
+ 
+button = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_DOWN)
+ 
+last = 0
+ 
 while True:
     state = button.value()
-    if state != last_state:
-        if state == 0:  # stisk
-            uart.write("BUTTON_PRESS\n")
-        last_state = state
-    time.sleep(0.02)
+ 
+    if state == 1 and last == 0:
+        print("BUTTON_PRESSED")
+ 
+    last = state
+    time.sleep(0.05)
